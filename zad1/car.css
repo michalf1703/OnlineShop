@@ -95,14 +95,14 @@ body {
 
 }
 .door {
-     position: absolute;
-     top: -70px;
-     left: 260px; /* Połowa szerokości samochodu */
-     width: 2px; /* Szerokość drzwi */
-     height: 160px; /* Wysokość drzwi */
-     background: #2d2c2c; /* Kolor drzwi */
+    position: absolute;
+    top: -70px;
+    left: 260px; /* Połowa szerokości samochodu */
+    width: 2px; /* Szerokość drzwi */
+    height: 160px; /* Wysokość drzwi */
+    background: #2d2c2c; /* Kolor drzwi */
 
- }
+}
 .handle1 {
     position: absolute;
     top: 15px; /* Ustal pozycję klamki na drzwiach */
