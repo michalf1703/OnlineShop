@@ -1,0 +1,304 @@
+body {
+    background: #66ccff;
+    margin: 0px;
+    overflow: hidden;
+}
+
+.road {
+    position: absolute;
+    display: flex;
+    align-items: flex-end;
+    top: 55%;
+    height: 45%;
+    width: 100%;
+    background: #4b4949;
+}
+.sun {
+    position: absolute;
+    top:6vh;
+    left:6vh;
+    width:8vh;
+    min-height: 120px;
+    min-width: 120px;
+    height: 8vh;
+    border-radius:50%;
+    background:#ffff66;
+}
+.cloud {
+
+    position: absolute;
+    top:15vh;
+    left:8vh;
+    width:25vh;
+    min-height: 60px;
+    min-width: 60px;
+    height: 3vh;
+    border-radius:50%;
+    background: #ffffff;
+}
+.cloud2 {
+
+    position: absolute;
+    top:17vh;
+    left:3vh;
+    width:25vh;
+    min-height: 50px;
+    min-width: 50px;
+    height: 3vh;
+    border-radius:50%;
+    background: #ffffff;
+}
+
+
+.car {
+    position: absolute;
+    top: 60%;
+    left: 50%; /* Zmieniamy wartość left na 50% */
+    transform: translateX(-50%); /* Przesunięcie o połowę szerokości elementu */
+    height: 90px;
+    width: 480px;
+    background: #d000ff;
+    border-radius: 30% / 200%;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.car_2 {
+    position: absolute;
+    left: 50%; /* Zmieniamy wartość left na 50% */
+    top: -70px;
+    transform: translateX(-50%); /* Przesunięcie o połowę szerokości elementu */
+    width: 300px;
+    height: 70px;
+    background: #d000ff;
+    border-radius: 120% / 200%;
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+    border-top-left-radius: 0.9;
+    border-bottom-left-radius: 0;
+}
+
+
+
+.side_window_1 {
+    position: absolute;
+    left: 130px;
+    top: -50px;
+    width: 120px;
+    height: 50px;
+    background: #1be7f2;
+    border-radius: 160% / 200%;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+
+}
+.door {
+     position: absolute;
+     top: -70px;
+     left: 260px; /* Połowa szerokości samochodu */
+     width: 2px; /* Szerokość drzwi */
+     height: 160px; /* Wysokość drzwi */
+     background: #2d2c2c; /* Kolor drzwi */
+
+ }
+.handle1 {
+    position: absolute;
+    top: 15px; /* Ustal pozycję klamki na drzwiach */
+    left: 350px; /* Ustal pozycję klamki na drzwiach */
+    width: 28px; /* Szerokość klamki */
+    height: 6px; /* Wysokość klamki */
+    background: #2d2c2c; /* Kolor klamki */
+    border-radius: 5px; /* Zakrąglenie krawędzi klamki */
+}
+
+
+.side_window_2 {
+    position: absolute;
+    left: 280px;
+    top: -50px;
+    width: 100px;
+    height: 50px;
+    background: #1be7f2;
+
+    border-radius: 5% / 200%;
+}
+.handle2 {
+    position: absolute;
+    top: 15px; /* Ustal pozycję klamki na drzwiach */
+    left: 220px; /* Ustal pozycję klamki na drzwiach */
+    width: 28px; /* Szerokość klamki */
+    height: 6px; /* Wysokość klamki */
+    background: #2d2c2c; /* Kolor klamki */
+    border-radius: 5px; /* Zakrąglenie krawędzi klamki */
+}
+
+.dot_1 {
+    position: absolute;
+    left: 90px;
+    top: 40px;
+    height: 100px;
+    width: 100px;
+    background-color: #4b4949;
+    border-radius: 90%;
+    display: inline-block;
+}
+
+.dot_2 {
+    position: absolute;
+    left: 340px;
+    top: 40px;
+    height: 100px;
+    width: 100px;
+    background-color: #4b4949;
+    border-radius: 90%;
+    display: inline-block;
+}
+
+.light {
+    position: absolute;
+    left: 5px;
+    top: 30px;
+    height: 28px;
+    width: 28px;
+    background-color: #ffdd00;
+    border-radius: 44%;
+    display: inline-block;
+}
+
+.wheel_1 {
+    position: absolute;
+    left: 100px;
+    top: 55px;
+    height: 80px;
+    width: 80px;
+    background-color: #2a2727;
+    border-radius: 90%;
+    display: inline-block;
+}
+
+.wheel_2 {
+    position: absolute;
+    left: 350px;
+    top: 55px;
+    height: 80px;
+    width: 80px;
+    background-color: #2a2727;
+    border-radius: 90%;
+    display: inline-block;
+}
+
+.stripe_wrapper {
+    position: relative;
+    width: 20%;
+    height: 10vh;
+}
+
+.stripe {
+    position: absolute;
+    top: 0;
+    right: 25%;
+    height: 50px;
+    width: 200px;
+    background-color: #ffffff;
+}
+.wall {
+    position: absolute;
+    top: 194px;
+    right: 0px;
+    height: 200px;
+    width: 340px;
+    background-color: #934b4b;
+}
+.door_house {
+    position: absolute;
+    top: 305px;
+    right: 135px;
+    height: 90px;
+    width: 60px;
+    background-color: #6c1b1b;
+}
+.roof {
+    position: absolute;
+    top: -6px;
+    right: -19px;
+    width: 0;
+    height: 0;
+    border-left: 180px solid transparent;
+    border-right: 180px solid transparent;
+    border-bottom: 200px solid rgb(110, 13, 13);
+
+}
+.window {
+    position: absolute;
+    top: 230px;
+    right: 240px;
+    height: 50px;
+    width: 50px;
+    background-color: #7beffd;
+}
+.window2 {
+    position: absolute;
+    top: 230px;
+    right: 35px;
+    height: 50px;
+    width: 50px;
+    background-color: #7beffd;
+}
+.house_handle {
+    position: absolute;
+    top: 350px;
+    left: 1345px;
+    width: 20px;
+    height: 6px;
+    background: #2a1717;
+    border-radius: 5px;
+}
+.tree {
+    position: absolute;
+    height: 140px;
+    width: 50px;
+    background-color: #7c1b1b;
+}
+.leaves {
+    position: absolute;
+    width:8vh;
+    min-height: 120px;
+    min-width: 120px;
+    height: 8vh;
+    border-radius:50%;
+    background: #1c9d55;
+}
+#tree1 {
+    top: 270px;
+    right: 630px;
+}
+#leaves1 {
+    top:-13vh;
+    left:-5vh;
+}
+#tree2 {
+    top: 270px;
+    right: 480px;
+}
+#leaves2 {
+    top:-13vh;
+    left:-5vh;
+}
+#tree3 {
+    top: 270px;
+    right: 795px;
+}
+#leaves3 {
+    top:-13vh;
+    left:-5vh;
+}
+#tree4 {
+    top: 270px;
+    right: 945px;
+}
+#leaves4 {
+    top:-13vh;
+    left:-5vh;
+}
