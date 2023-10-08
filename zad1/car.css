@@ -1,6 +1,6 @@
 body {
     background: #b0d7f8; /*niebo*/
-    margin: 0px;
+    margin: 0;
     overflow: hidden; /*hidden -> wszelka nadmiarowa zawartosc bedzie urkyta*/
 }
 
@@ -73,7 +73,7 @@ body {
     border-radius: 120% / 200%;
     border-bottom-right-radius: 0;
     border-top-right-radius: 0;
-    border-top-left-radius: 0.9;
+    border-top-left-radius: 78%;
     border-bottom-left-radius: 0;
 }
 
@@ -203,7 +203,7 @@ body {
 .wall {
     position: absolute;
     top: 194px;
-    right: 0px;
+    right: 0;
     height: 200px;
     width: 340px;
     background-color: #934b4b;
