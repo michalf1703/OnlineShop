@@ -1,13 +1,13 @@
 body {
-    background: #66ccff;
+    background: #b0d7f8; /*niebo*/
     margin: 0px;
-    overflow: hidden;
+    overflow: hidden; /*hidden -> wszelka nadmiarowa zawartosc bedzie urkyta*/
 }
 
 .road {
-    position: absolute;
-    display: flex;
-    align-items: flex-end;
+    position: absolute; /*absolute -> pozycjonowanie absolutne, można precyzyjnie kontrolować położenie na stronie*/
+    display: flex; /*model flexbox, który zapewnia łatwe rozmieszczanie elementów wewnątrz drogi */
+    align-items: flex-end; /*wyrównywanie do dołu */
     top: 55%;
     height: 45%;
     width: 100%;
@@ -15,13 +15,13 @@ body {
 }
 .sun {
     position: absolute;
-    top:6vh;
-    left:6vh;
+    top:6vh; /*przesunięcie w dół o 6% widoku względem przeglądarki*/
+    left:6vh; /*przesunięcie do lewej krawędzi, przesunięcie 6% w prawo względem szerokości przeglądarki */
     width:8vh;
-    min-height: 120px;
+    min-height: 120px; /*zmiana okna przeglądarki nie sprawia, że słońce sie zmniejsza*/
     min-width: 120px;
-    height: 8vh;
-    border-radius:50%;
+    height: 8vh; /*ustawnienie wysokości elementu na 8% widoku przeglądarki */
+    border-radius:50%; /*nadanie kształtu koła*/
     background:#ffff66;
 }
 .cloud {
@@ -52,23 +52,21 @@ body {
 
 .car {
     position: absolute;
-    top: 60%;
-    left: 50%; /* Zmieniamy wartość left na 50% */
-    transform: translateX(-50%); /* Przesunięcie o połowę szerokości elementu */
+    top: 60%;  /* samochód umiejscowiony na 60% od góry*/
+    left: 30%;
     height: 90px;
     width: 480px;
     background: #d000ff;
-    border-radius: 30% / 200%;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
+    border-radius: 30% / 200%; /*zaaokrąglenie rogów samochodu - w celu uzyskania elipsy*/
+    border-bottom-left-radius: 0; /*brak zaokrąglenia w lewym dolnym rogu */
+    border-bottom-right-radius: 0; /*brak zaokrąglenia w prawym dolnym rogu */
     border-top-right-radius: 0;
 }
 
-.car_2 {
+.car_roof {
     position: absolute;
-    left: 50%; /* Zmieniamy wartość left na 50% */
+    left: 20%;
     top: -70px;
-    transform: translateX(-50%); /* Przesunięcie o połowę szerokości elementu */
     width: 300px;
     height: 70px;
     background: #d000ff;
@@ -97,20 +95,20 @@ body {
 .door {
     position: absolute;
     top: -70px;
-    left: 260px; /* Połowa szerokości samochodu */
-    width: 2px; /* Szerokość drzwi */
-    height: 160px; /* Wysokość drzwi */
-    background: #2d2c2c; /* Kolor drzwi */
+    left: 260px;
+    width: 2px;
+    height: 160px;
+    background: #2d2c2c;
 
 }
 .handle1 {
     position: absolute;
-    top: 15px; /* Ustal pozycję klamki na drzwiach */
-    left: 350px; /* Ustal pozycję klamki na drzwiach */
-    width: 28px; /* Szerokość klamki */
-    height: 6px; /* Wysokość klamki */
-    background: #2d2c2c; /* Kolor klamki */
-    border-radius: 5px; /* Zakrąglenie krawędzi klamki */
+    top: 15px;
+    left: 350px;
+    width: 28px;
+    height: 6px;
+    background: #2d2c2c;
+    border-radius: 5px;
 }
 
 
@@ -121,20 +119,19 @@ body {
     width: 100px;
     height: 50px;
     background: #1be7f2;
-
     border-radius: 5% / 200%;
 }
 .handle2 {
     position: absolute;
-    top: 15px; /* Ustal pozycję klamki na drzwiach */
-    left: 220px; /* Ustal pozycję klamki na drzwiach */
-    width: 28px; /* Szerokość klamki */
-    height: 6px; /* Wysokość klamki */
-    background: #2d2c2c; /* Kolor klamki */
-    border-radius: 5px; /* Zakrąglenie krawędzi klamki */
+    top: 15px;
+    left: 220px;
+    width: 28px;
+    height: 6px;
+    background: #2d2c2c;
+    border-radius: 5px;
 }
 
-.dot_1 {
+.recess_car1 {
     position: absolute;
     left: 90px;
     top: 40px;
@@ -142,10 +139,10 @@ body {
     width: 100px;
     background-color: #4b4949;
     border-radius: 90%;
-    display: inline-block;
+
 }
 
-.dot_2 {
+.recess_car2 {
     position: absolute;
     left: 340px;
     top: 40px;
@@ -153,7 +150,7 @@ body {
     width: 100px;
     background-color: #4b4949;
     border-radius: 90%;
-    display: inline-block;
+
 }
 
 .light {
@@ -164,7 +161,7 @@ body {
     width: 28px;
     background-color: #ffdd00;
     border-radius: 44%;
-    display: inline-block;
+
 }
 
 .wheel_1 {
@@ -175,7 +172,7 @@ body {
     width: 80px;
     background-color: #2a2727;
     border-radius: 90%;
-    display: inline-block;
+
 }
 
 .wheel_2 {
@@ -186,11 +183,11 @@ body {
     width: 80px;
     background-color: #2a2727;
     border-radius: 90%;
-    display: inline-block;
+
 }
 
 .stripe_wrapper {
-    position: relative;
+    position: relative; /*pozycja względem innego elementu, nie ustawiamy pozycji np. od lewej, prawej itd*/
     width: 20%;
     height: 10vh;
 }
