@@ -24,7 +24,25 @@ let initList = function() {
     );
 }
 
-initList();
+const BASE_URL = "https://api.jsonbin.io/v3/b/65369a070574da7622bca6a9";
+const SECRET_KEY = "$2a$10$QEem8jJt/wGqycGeFsRSFe7VST/uZ.xVek6cSbABLUF2od1.k6u3e";
+$.ajax({
+    // copy Your bin identifier here. It can be obtained in the dashboard
+    url: BASE_URL,
+    type: 'GET',
+    headers: { //Required only if you are trying to access a private bin
+        'X-Master-Key': SECRET_KEY
+    },
+    success: (data) => {
+        //console.log(data);
+        todoList = data;
+    },
+    error: (err) => {
+        console.log(err.responseJSON);
+    }
+});
+
+//initList();
 let updateTodoList = function() {
     let todoListDiv =
         document.getElementById("todoListView");
@@ -62,6 +80,7 @@ setInterval(updateTodoList, 1000);
 
 let deleteTodo = function(index) {
     todoList.splice(index,1);
+    updateJSONbin();
 }
 let addTodo = function() {
     //get the elements in the form
@@ -84,5 +103,23 @@ let addTodo = function() {
     //add item to the list
     todoList.push(newTodo);
     window.localStorage.setItem("todos", JSON.stringify(todoList));
+    updateJSONbin();
 }
 newElement.appendChild(newDeleteButton);
+
+let updateJSONbin = function() {
+    $.ajax({
+        url: BASE_URL,
+        type: 'PUT',
+        headers: { //Required only if you are trying to access a private bin
+            'X-Master-Key': SECRET_KEY
+        },
+        contentType: 'application/json',
+        data: JSON.stringify(todoList),
+        success: (data) => {
+            console.log(data);
+        },
+        error: (err) => {
+            console.log(err.responseJSON);
+        }
+    })};
