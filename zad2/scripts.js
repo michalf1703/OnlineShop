@@ -28,13 +28,15 @@ const isDueDateAMatch = (from, to, dueDate) => {
     return false;
 };
 
-const isSearchAMatch = (filterValue, title, description) => {
+const isSearchAMatch = (filterValue, title, description, place) => {
     const isFilterEmpty = filterValue === "";
     const doesTitleIncludeFilter = title.includes(filterValue);
     const doesDescriptionIncludeFilter = description.includes(filterValue);
+    const doesPlaceIncludeFilter = place.includes(filterValue);
+
 
     return (
-        isFilterEmpty || doesTitleIncludeFilter || doesDescriptionIncludeFilter
+        isFilterEmpty || doesTitleIncludeFilter || doesDescriptionIncludeFilter || doesPlaceIncludeFilter
     );
 };
 
@@ -89,11 +91,12 @@ const updateTodoList = function () {
         const filterValue = filterInput.value;
         const title = todoList[todo].title;
         const description = todoList[todo].description;
+        const place = todoList[todo].place;
 
         // render elements only if they fit the filter value
 
         if (
-            isSearchAMatch(filterValue, title, description) &&
+            isSearchAMatch(filterValue, title, description, place) &&
             isDueDateAMatch(from, to, dueDate)
         ) {
             const newElement = $(`<tr></tr>`)
@@ -120,11 +123,12 @@ setInterval(updateTodoList, 1000);
 
 
 const deleteTodo = function (index) {
-    // remove todo
+    // remove todo at the specified index
     todoList.splice(index, 1);
+    // update todos on the backend
     updateJSONbin();
-
 };
+
 
 const addTodo = function () {
     // get the values from the form
