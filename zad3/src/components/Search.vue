@@ -6,7 +6,7 @@
         type="text"
         id="inputTitle"
         class="form-control"
-        placeholder="Podaj tytuł lub fragment tytułu filmu"
+        placeholder="Podaj tytuł lub jego fragment"
         v-model="movieTitle"
       />
     </div>
@@ -62,6 +62,7 @@
 import moviesData from "../assets/movies.json";
 
 const moviesList = moviesData.slice(0, 37541);
+
 
 import filter from "lodash/filter";
 import unset from "lodash/unset";

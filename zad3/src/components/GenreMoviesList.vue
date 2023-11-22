@@ -2,7 +2,7 @@
   <div>
     <h1>Filmy wg gatunku</h1>
     <h5>
-      Wyświetlanie obecnie {{ howManyLoaded }} / {{ movies.length }}
+      Wyświetlanie obecnie {{ howManyLoaded }} / {{ moviesListCopy.length }}
     </h5>
     <table class="table-condensed table-hover">
       <thead>
@@ -26,7 +26,7 @@
         </tr>
       </tbody>
     </table>
-    <div v-if="howManyLoaded <= movies.length">
+    <div v-if="howManyLoaded <= moviesListCopy.length">
       <button class="btn btn-info col-sm-12" v-on:click="loadMore">
         Load More
       </button>
@@ -37,21 +37,25 @@
 <script>
 import concat from "lodash/concat";
 import compact from "lodash/compact";
+import moviesData from "../assets/movies.json";
+
+const moviesList = moviesData.slice(600, 700); // Zakładam, że masz dostęp do wszystkich danych z pliku
 
 export default {
   name: "GenreMoviesList",
   data() {
     return {
-      movies: [],
       grouped: [],
       howManyLoaded: 0,
+      moviesListCopy: [],
       moviesToDisplay: [],
     };
   },
   methods: {
     loadMore() {
       this.howManyLoaded += 10;
-      this.moviesToDisplay = this.movies.slice(0, this.howManyLoaded);
+      this.moviesToDisplay = this.moviesListCopy.slice(0, this.howManyLoaded);
+      this.group();
     },
     group() {
       this.allGenres = [];
@@ -71,12 +75,10 @@ export default {
   },
   created() {
     this.$emitter.emit("update-data");
-    this.$emitter.on("search-change-params", (movies) => {
-      this.movies = movies;
-      this.moviesToDisplay = this.movies.slice(0, this.howManyLoaded);
-      if (this.howManyLoaded < 10) this.loadMore();
-      this.group();
-    });
+    this.moviesListCopy = [...moviesList];
+    this.moviesToDisplay = this.moviesListCopy.slice(0, this.howManyLoaded);
+    if (this.howManyLoaded < 10) this.loadMore();
+    this.group();
   },
 };
 </script>
