@@ -19,10 +19,10 @@
           v-model="dateFrom"
           type="number"
           min="1900"
-          max="2019"
+          max="2023"
           id="inputProductionFrom"
           class="form-control"
-          placeholder="Liczba naturalna z przedziału 1900-2019"
+          placeholder="Liczba naturalna z przedziału 1900-2023"
         />
       </div>
     </div>
@@ -35,10 +35,10 @@
           v-model="dateTo"
           type="number"
           min="1900"
-          max="2019"
+          max="2023"
           id="inputProductionTo"
           class="form-control"
-          placeholder="Liczba naturalna z przedziału 1900-2019"
+          placeholder="Liczba naturalna z przedziału 1900-2023"
         />
       </div>
     </div>
@@ -59,35 +59,41 @@
 </template>
 
 <script>
+//załadowanie filmów z pliku
 import moviesData from "../assets/movies.json";
+const moviesList = moviesData.slice(0, 36273);
 
-const moviesList = moviesData.slice(0, 37541);
-
-
+//imporotowanie funkcji filtrujących 
 import filter from "lodash/filter";
 import unset from "lodash/unset";
 import mapKeys from "lodash/mapKeys";
 
+//sprawdzenie czy tytuł pasuje do poszukiwań 
 const doesTitleEqual = (params, object) => {
+  //czy użytkownik podal tytul filmu
   const isMovieTitleProvided = params.movieTitle;
   if (!isMovieTitleProvided) return true;
+  //porównanie tytułu filmu - ignorujemy wielkosc liter
   const isSearchedTitleSameAsCurrentObjects = object.title.toLowerCase().includes(
     params.movieTitle.toLowerCase()
   );
   return isSearchedTitleSameAsCurrentObjects;
 };
 
+//sprawdzenie czy rok filmu mieści się w filtrach
 const isDateEligible = (params, object) => {
   const areDatesProvided = !!params.dateFrom || !!params.dateTo;
   if (!areDatesProvided) return true;
-  const isMovieDateBetweenSearchDates = !params.dateTo // If dateTo is not provided
+  //sprawdzenie film miesci sie w zakresie
+  const isMovieDateBetweenSearchDates = !params.dateTo 
     ? object.year >= params.dateFrom
-    : !params.dateFrom // If dateFrom is not provided
+    : !params.dateFrom 
     ? object.year <= params.dateTo
-    : object.year <= params.dateTo && object.year >= params.dateFrom; // If both are provided
+    : object.year <= params.dateTo && object.year >= params.dateFrom; 
   return isMovieDateBetweenSearchDates;
 };
 
+//sprawdzenie, czy w obsadzie znajduje sie podany aktor
 const isThereSomeoneFromTheCast = (params, object) => {
   const isCastProvided = params.cast;
   if (!isCastProvided) return true;
@@ -98,21 +104,29 @@ const isThereSomeoneFromTheCast = (params, object) => {
   return isProvidedCastInThisObject;
 };
 
+// obiekt-komponent Vue
 export default {
   name: "SearchMove",
+
   data() {
     return {
+      // stan komponentu - dane wprowadzone przez użytkownika w formularzu
       movieTitle: "",
       dateFrom: "",
       dateTo: "",
       cast: "",
     };
   },
+
   methods: {
+    // funkcja filtrująca dane filmów na podstawie parametrów zmienionych przez użytkownika
     filterData(changedParams) {
+      // usunięcie kluczy bez wartości
       mapKeys(changedParams, (value, key) => {
         if (!value) unset(changedParams, key);
       });
+
+      // filtrowanie listy filmów na podstawie różnych kryteriów
       return filter(
         moviesList,
         (o) =>
@@ -121,7 +135,10 @@ export default {
           isThereSomeoneFromTheCast(changedParams, o)
       );
     },
+
+    // wysyłanie zaktualizowanych danych
     sendUpdate() {
+      // wywołanie funkcji filtrującej i przekazanie wyników do zdarzenia
       this.$emitter.emit(
         "search-change-params",
         this.filterData({
@@ -133,7 +150,10 @@ export default {
       );
     },
   },
+
+  // po zamontowaniu komponentu
   mounted() {
+    // nasłuchiwanie zdarzenia - komunikacja z innymi komponentami 
     this.$emitter.on("update-data", () => {
       this.sendUpdate();
     });

@@ -32,23 +32,27 @@ export default {
   name: "MoviesTable",
   data() {
     return {
-      movies: [],
-      howManyLoaded: 0,
-      moviesToDisplay: [],
+      movies: [],             // wszystkie dostępne filmy
+      howManyLoaded: 0,       // ilość już załadowanych filmów
+      moviesToDisplay: [],    // filmy do wyświetlenia w tabeli
     };
   },
+
   methods: {
+    // funkcja do ładowania kolejnych filmów
     loadMore() {
-      this.howManyLoaded += 10;
-      this.moviesToDisplay = this.movies.slice(0, this.howManyLoaded);
+      this.howManyLoaded += 10;                     
+      this.moviesToDisplay = this.movies.slice(0, this.howManyLoaded);  
     },
   },
+
   created() {
-    this.$emitter.emit("update-data");
+    this.$emitter.emit("update-data");  
+    // nasłuchiwanie na zdarzenie zmiany parametrów wyszukiwania
     this.$emitter.on("search-change-params", (movies) => {
-      this.movies = movies;
-      this.moviesToDisplay = this.movies.slice(0, this.howManyLoaded);
-      if (this.howManyLoaded < 10) this.loadMore();
+      this.movies = movies;  // aktualizacja listy filmów na podstawie wyników wyszukiwania
+      this.moviesToDisplay = this.movies.slice(0, this.howManyLoaded);  
+      if (this.howManyLoaded < 10) this.loadMore();  // jeśli załadowano mniej niż 10 filmów, załaduj więcej
     });
   },
 };

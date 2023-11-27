@@ -9,9 +9,9 @@
 
 <script>
 import Search from "./components/Search.vue";
-import MoviesTable from "./components/MoviesTable.vue";
-import GenreMoviesList from "./components/GenreMoviesList.vue";
-import CastMoviesList from "./components/CastMoviesList.vue";
+import MoviesTable from "./components/MoviesList.vue";
+import GenreMoviesList from "./components/GenresList.vue";
+import CastMoviesList from "./components/CastList.vue";
 
 export default {
   name: "App",

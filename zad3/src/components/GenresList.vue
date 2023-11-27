@@ -13,8 +13,11 @@
           <th>Genres</th>
         </tr>
       </thead>
+      <!-- pętla dla każdego gatunku -->
       <tbody v-for="(genre, index1) in grouped" :key="index1">
+        <!-- nagłówek gatunku -->
         <h1>{{ Object.keys(genre)[0] }}</h1>
+        <!-- pętla dla każdego filmu w danym gatunku -->
         <tr
           v-for="(movie, index2) in genre[Object.keys(genre)[0]]"
           :key="index2"
@@ -38,34 +41,34 @@
 import concat from "lodash/concat";
 import compact from "lodash/compact";
 import moviesData from "../assets/movies.json";
-
-const moviesList = moviesData.slice(600, 700); // Zakładam, że masz dostęp do wszystkich danych z pliku
+const moviesList = moviesData.slice(600, 700); 
 
 export default {
   name: "GenreMoviesList",
   data() {
     return {
-      grouped: [],
-      howManyLoaded: 0,
-      moviesListCopy: [],
-      moviesToDisplay: [],
+      grouped: [],           // pogrupowane filmy wg gatunku
+      howManyLoaded: 0,       // ilość już załadowanych filmów
+      moviesListCopy: [],     // kopia pełnej listy filmów
+      moviesToDisplay: [],    // filmy do wyświetlenia w tabeli
     };
   },
+
   methods: {
     loadMore() {
-      this.howManyLoaded += 10;
-      this.moviesToDisplay = this.moviesListCopy.slice(0, this.howManyLoaded);
-      this.group();
+      this.howManyLoaded += 10;                        
+      this.moviesToDisplay = this.moviesListCopy.slice(0, this.howManyLoaded);  
+      this.group();  // ponowne grupowanie filmów wg gatunku
     },
+    // funkcja do grupowania filmów wg gatunku
     group() {
       this.allGenres = [];
+      // zbieranie wszystkich gatunków z filmów do wyświetlenia
       this.moviesToDisplay.forEach((value) => {
         this.allGenres = concat(this.allGenres, value.genres);
       });
-      this.allGenres = compact(Array.from(new Set(this.allGenres)));
-
-      console.log(this.allGenres);
-
+      this.allGenres = compact(Array.from(new Set(this.allGenres)));  // usunięcie duplikatów
+      // grupowanie filmów wg gatunku
       this.grouped = this.allGenres.map((genre) => ({
         [genre]: this.moviesToDisplay.filter((movie) =>
           movie.genres.includes(genre)
@@ -73,12 +76,13 @@ export default {
       }));
     },
   },
+
   created() {
-    this.$emitter.emit("update-data");
-    this.moviesListCopy = [...moviesList];
-    this.moviesToDisplay = this.moviesListCopy.slice(0, this.howManyLoaded);
-    if (this.howManyLoaded < 10) this.loadMore();
-    this.group();
+    this.$emitter.emit("update-data");  // wysłanie zdarzenia o aktualizacji danych
+    this.moviesListCopy = [...moviesList];  
+    this.moviesToDisplay = this.moviesListCopy.slice(0, this.howManyLoaded);  // ustawienie filmów do wyświetlenia
+    if (this.howManyLoaded < 10) this.loadMore();  
+    this.group();  // grupowanie wg gatunku
   },
 };
 </script>
