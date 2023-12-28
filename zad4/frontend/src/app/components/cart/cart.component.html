@@ -1,0 +1,93 @@
+<div class="container-xl">
+    <ng-container *ngIf="cartService.count > 0; else emptyCart">
+        <div class="table-responsive-md">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th class="col col-sm-1 text-center">#</th>
+                        <th class="col col-sm-2 text-center">Name</th>
+                        <th class="col col-sm-1 text-center">Price</th>
+                        <th class="col col-sm-2 text-center">Quantity</th>
+                        <th class="col col-sm-1 text-center">Total price</th>
+                        <th class="col col-sm-3 text-center"></th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider text-center">
+                    <tr
+                        *ngFor="
+                            let item of cartService.cart | keyvalue;
+                            let i = index
+                        "
+                        class="align-middle">
+                        <td>{{ i + 1 }}</td>
+                        <td>{{ item.value.name }}</td>
+                        <td>
+                            {{ item.value.unitPrice | number : '1.2-2' }}
+                        </td>
+                        <td
+                            class="d-md-flex justify-content-md-center align-items-md-center">
+                            <button
+                                class="btn btn-danger px-2"
+                                (click)="decrement(item.key)">
+                                <i class="bi bi-dash-lg"></i>
+                            </button>
+                            <span class="mx-2 w-25">
+                                {{ item.value.quantity }}
+                            </span>
+                            <button
+                                class="btn btn-success px-2"
+                                (click)="increment(item.key, item.value)">
+                                <i class="bi bi-plus-lg"></i>
+                            </button>
+                        </td>
+                        <td>
+                            {{
+                                item.value.unitPrice * item.value.quantity
+                                    | number : '1.2-2'
+                            }}
+                        </td>
+                        <td>
+                            <button
+                                class="btn btn-outline-danger px-3"
+                                (click)="remove(item.key)">
+                                <i class="bi bi-trash"></i>
+                                <span class="mx-2">Remove from cart</span>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="text-end fs-5">
+            <p>
+                <span class="fw-bold me-3">Total cost:</span>
+                <span class="text-decoration-underline">
+                    {{ cartService.totalCost | number : '1.2-2' }}
+                </span>
+            </p>
+            <span
+                placement="bottom"
+                [ngbTooltip]="tooltipMessage">
+                <button
+                    class="btn btn-success"
+                    [ngClass]="{ disabled: !authService.authenticated }"
+                    (click)="createOrder()">
+                    Place order
+                </button>
+            </span>
+        </div>
+    </ng-container>
+
+    <ng-template #emptyCart>
+        <h4 class="text-center">The cart is empty.</h4>
+        <p class="text-center">
+            Go to
+            <a
+                routerLink="/products"
+                class="text-decoration-none link-dark fst-italic">
+                products page
+            </a>
+            and add desired items to cart.
+        </p>
+    </ng-template>
+</div>

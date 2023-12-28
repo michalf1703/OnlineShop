@@ -1,0 +1,43 @@
+<form>
+    <div class="d-flex flex-row justify-content-around flex-wrap">
+        <div class="row align-items-center">
+            <div class="col-auto px-0 m-1">
+                <label class="form-label mx-3">Name:</label>
+            </div>
+            <div class="col-auto px-0 m-1">
+                <input
+                    [(ngModel)]="filters.name"
+                    (input)="inputsChanged()"
+                    class="form-control d-inline"
+                    name="productName" />
+            </div>
+        </div>
+        <div class="">
+            <label class="form-label mx-3">Categories:</label>
+            <div
+                ngbDropdown
+                autoClose="outside"
+                class="d-inline-block">
+                <button
+                    type="button"
+                    class="btn btn-outline-primary"
+                    id="categoryDropDown"
+                    ngbDropdownToggle>
+                    Choose categories:
+                </button>
+                <div
+                    ngbDropdownMenu
+                    aria-labelledby="categoryDropDown">
+                    <label
+                        *ngFor="let c of categoryService.categories$ | async"
+                        ngbDropdownItem>
+                        <input
+                            type="checkbox"
+                            (change)="updateCategories($event, c.id)" />
+                        {{ c.name }}
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

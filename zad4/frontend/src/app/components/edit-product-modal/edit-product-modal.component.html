@@ -1,0 +1,138 @@
+<div class="container mt-2">
+    <form
+        (submit)="onSubmit()"
+        #form="ngForm">
+        <div class="mb-2">
+            <label
+                class="form-label"
+                for="Name">
+                Name
+            </label>
+            <input
+                class="form-control"
+                name="Name"
+                [(ngModel)]="dto.name"
+                required
+                #name="ngModel" />
+            <div
+                *ngIf="name.invalid"
+                class="text-danger">
+                <ng-container *ngIf="name.errors?.['required']">
+                    Name is required.
+                </ng-container>
+            </div>
+        </div>
+        <div class="mb-2">
+            <label
+                class="form-label"
+                for="Desc">
+                Description
+            </label>
+            <input
+                class="form-control"
+                name="Desc"
+                [value]="dto.description"
+                required
+                #desc="ngModel"
+                [(ngModel)]="dto.description" />
+            <div
+                *ngIf="desc.invalid"
+                class="text-danger">
+                <ng-container *ngIf="desc.errors?.['required']">
+                    Description is required.
+                </ng-container>
+            </div>
+        </div>
+        <div class="mb-2">
+            <label
+                class="form-label"
+                for="UnitPrice">
+                Unit price
+            </label>
+            <input
+                name="UnitPrice"
+                class="form-control"
+                type="number"
+                min="0"
+                required
+                #price="ngModel"
+                [value]="dto.unitPrice"
+                (keypress)="errors.unitPrice = ''"
+                [(ngModel)]="dto.unitPrice" />
+            <div
+                *ngIf="price.invalid || errors.unitPrice"
+                class="text-danger">
+                <ng-container *ngIf="price.errors?.['required']">
+                    Price is required.
+                </ng-container>
+                <ng-container *ngIf="price.errors?.['min']">
+                    Price must be greater than
+                    {{ price.errors?.['min']['min'] }}.
+                </ng-container>
+                <ng-container *ngIf="errors.unitPrice">
+                    {{ errors.unitPrice }}
+                </ng-container>
+            </div>
+        </div>
+        <div class="mb-2">
+            <label
+                class="form-label"
+                for="UnitWeight">
+                Unit weight
+            </label>
+            <input
+                class="form-control"
+                name="UnitWeight"
+                type="number"
+                min="0"
+                required
+                #weight="ngModel"
+                [value]="dto.unitWeight"
+                [(ngModel)]="dto.unitWeight"
+                (keypress)="errors.unitWeight = ''" />
+            <div
+                *ngIf="weight.invalid || (errors.unitWeight && weight.dirty)"
+                class="text-danger">
+                <ng-container *ngIf="weight.errors?.['required']">
+                    Weight is required.
+                </ng-container>
+                <ng-container *ngIf="weight.errors?.['min']">
+                    Weight must be greater than
+                    {{ weight.errors?.['min']['min'] }}.
+                </ng-container>
+                <ng-container *ngIf="errors.unitWeight">
+                    {{ errors.unitWeight }}
+                </ng-container>
+            </div>
+        </div>
+        <div class="mb-2">
+            <label for="Category">Category</label>
+            <select
+                class="form-select"
+                name="Category"
+                [(ngModel)]="dto.categoryId"
+                [value]="dto.categoryId">
+                <option
+                    *ngFor="let category of categories$ | async"
+                    [ngValue]="category.id"
+                    [selected]="category.id === dto.categoryId">
+                    {{ category.name }}
+                </option>
+            </select>
+        </div>
+        <div class="mb-2 d-flex justify-content-end">
+            <button
+                class="btn btn-danger mx-2"
+                type="button"
+                (click)="activeModal.close(product)">
+                Cancel
+            </button>
+            <button
+                [disabled]="form.invalid"
+                class="btn btn-success mx-2"
+                type="submit">
+                Save
+            </button>
+        </div>
+    </form>
+</div>
