@@ -65,7 +65,29 @@ export class DbInitService implements OnApplicationBootstrap {
                 37.99,
                 0.201,
                 categories[5]
+            ),
+            new Product(
+                "Harry Potter and the Philosopher's Stone",
+                'Another great book in the Harry Potter series!',
+                25.99,
+                0.421,
+                categories[1]
+            ),
+            new Product(
+                "Mountain bike",
+                'Riding it is pure pleasure!',
+                1025.99,
+                5.802,
+                categories[2]
+            ),
+            new Product(
+                "T-shirt",
+                'cotton 100%, black',
+                35.99,
+                0.125,
+                categories[4]
             )
+
         ]);
     }
 
