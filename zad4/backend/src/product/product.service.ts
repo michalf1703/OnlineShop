@@ -55,7 +55,7 @@ export class ProductService {
 
         return this.productRepo.save(p);
     }
-
+//przeksztalcamy dto na produkt
     private async mapDtoToProduct(dto: CreateProductDto): Promise<Product> {
         const category = await this.categoryRepo.findOneBy({
             id: dto.categoryId

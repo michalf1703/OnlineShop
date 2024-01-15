@@ -2,13 +2,21 @@ import { Logger, ValidationPipe } from '@nestjs/common';
 import { NestApplication, NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app.module';
+import * as cors from 'cors';
 
 async function bootstrap() {
+    
     const logger = new Logger(NestApplication.name);
 
     const app = await NestFactory.create(AppModule);
-    app.enableCors();
-
+    const corsOptions = {
+        origin: 'http://localhost:4200', 
+        methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+        credentials: true,
+        optionsSuccessStatus: 204,
+      };
+      
+      app.use(cors(corsOptions));
     app.useGlobalPipes(
         new ValidationPipe({
             transform: true

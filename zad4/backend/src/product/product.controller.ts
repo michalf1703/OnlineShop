@@ -15,7 +15,7 @@ import { UpdateProductDto } from './dto/update-product.dto';
 import { Product } from './entities/product.entity';
 import { ProductService } from './product.service';
 
-@Controller('products')
+@Controller('products') //products -> prefix ściezki
 @ApiTags('Products')
 export class ProductController {
     constructor(private readonly productService: ProductService) {}
@@ -31,8 +31,8 @@ export class ProductController {
     }
 
     @Post()
-    @UsePipes(ValidationPipe)
-    @AdminRoute()
+    @UsePipes(ValidationPipe) //walidacja danych
+    @AdminRoute() //wymagane uprawnienia admina
     create(@Body() createProductDto: CreateProductDto): Promise<Product> {
         return this.productService.create(createProductDto);
     }

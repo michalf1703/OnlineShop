@@ -34,7 +34,6 @@ export class CartComponent {
             this.cartService.placeOrder().subscribe((r) => {
                 console.log(r);
                 this.router.navigate(['products']);
-                // TODO show toast message
             });
         }
     }

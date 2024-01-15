@@ -13,7 +13,7 @@ export class OrderDetails {
     })
     order: Order;
 
-    @ManyToOne(() => Product) // TODO add NOT NULL constraint
+    @ManyToOne(() => Product) 
     product: Product;
 
     @IsNumber()
