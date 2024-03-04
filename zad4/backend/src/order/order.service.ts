@@ -68,7 +68,6 @@ export class OrderService {
             Array.from(
                 dto.products
                     .reduce((map, dto) => {
-                        // group by productId and sum quantities
                         if (map.has(dto.productId)) {
                             map.get(dto.productId).quantity += dto.quantity;
                         } else {
