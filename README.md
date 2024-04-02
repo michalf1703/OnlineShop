@@ -74,3 +74,23 @@ This repository contains the backend application for an E-Commerce store managem
 ![login_panel](https://github.com/michalf1703/OnlineShop/assets/126731293/218aceb1-66af-417f-81db-621bc965f0bc)
 ![register_panel](https://github.com/michalf1703/OnlineShop/assets/126731293/74c51f2d-1854-4349-b9ce-5f231dc297ca)
 
+
+## Installation - backend
+
+```bash
+$ npm install
+```
+
+## Running the app - backend 
+
+```bash
+# development
+$ npm run start
+
+# watch mode
+$ npm run start:dev
+
+# production mode
+$ npm run start:prod
+```
+
