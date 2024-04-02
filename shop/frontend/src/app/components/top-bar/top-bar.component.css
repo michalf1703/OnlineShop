@@ -1,0 +1,9 @@
+.popover-custom {
+    margin-bottom: 0;
+    min-width: 20vw;
+    padding: 0;
+    max-height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
