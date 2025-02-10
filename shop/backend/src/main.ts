@@ -5,18 +5,17 @@ import { AppModule } from './app.module';
 import * as cors from 'cors';
 
 async function bootstrap() {
-    
     const logger = new Logger(NestApplication.name);
 
     const app = await NestFactory.create(AppModule);
     const corsOptions = {
-        origin: 'http://localhost:4200', 
+        origin: 'http://localhost:4200',
         methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
         credentials: true,
-        optionsSuccessStatus: 204,
-      };
-      
-      app.use(cors(corsOptions));
+        optionsSuccessStatus: 204
+    };
+
+    app.use(cors(corsOptions));
     app.useGlobalPipes(
         new ValidationPipe({
             transform: true
